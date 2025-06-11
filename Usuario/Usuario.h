@@ -16,7 +16,7 @@ private:
     string mail;
 public:
     Usuario();
-    Usuario(int id, string &nombre, string &mail);
+    Usuario(int id, string &nombre,string &apellido, string &mail);
 
     int getId() const;
     string getNombre() const;

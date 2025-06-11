@@ -6,8 +6,8 @@
 #include <iostream>
 using namespace std;
 
-Usuario::Usuario() : idUsuario(0), nombre(""), mail(""){}
-Usuario::Usuario(int id, string &nombre, string &mail) : idUsuario(id), nombre(nombre), mail(mail){}
+Usuario::Usuario() : idUsuario(0), nombre(""),apellido(""), mail(""){}
+Usuario::Usuario(int id, string &nombre,string &apellido, string &mail) : idUsuario(id), nombre(nombre),apellido(apellido), mail(mail){}
 
 int Usuario::getId() const { return idUsuario; }
 
