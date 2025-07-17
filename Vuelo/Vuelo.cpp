@@ -4,44 +4,75 @@
 
 #include "Vuelo.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
-Vuelo::Vuelo() : numVuelo(0), aerolinea(""), origenVuelo(""), destinoVuelo(""), fechaLlegada(), fechaSalida(){}
-Vuelo::Vuelo(int numVuelo, string &aerolinea, string &origen, string &destino, Fecha salida, Fecha llegada) {
-    this->numVuelo = numVuelo;
-    this->aerolinea = aerolinea;
-    origenVuelo = origen;
-    destinoVuelo = destino;
-    fechaSalida = salida;
-    fechaLlegada = llegada;
+
+Vuelo::Vuelo(int numVuelo, string aerolinea, string origen, string destino, Fecha salida, Fecha llegada) : numVuelo(numVuelo), aerolinea(aerolinea), origen(origen), destino(destino), fechaSalida(salida), fechaLlegada(llegada){
+    char fila = 'A';
+    for (int i = 0; i < FILAS ; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            asientos[i][j] = fila + to_string(j + 1);
+        }
+        fila++;
+    }
 }
 
 int Vuelo::getNumVuelo() const { return numVuelo; }
+void Vuelo::setNumVuelo(int n) { this->numVuelo = numVuelo; }
 
 string Vuelo::getAerolinea() const { return aerolinea; }
-void Vuelo::setAerolinea(string &aerolinea) { this->aerolinea = aerolinea; }
+void Vuelo::setAerolinea(const string &aerolinea) { this->aerolinea = aerolinea; }
 
-string Vuelo::getOrigenVuelo() const { return origenVuelo; }
-void Vuelo::setOrigenVuelo(string &origen) { origenVuelo = origen; }
+string Vuelo::getOrigenVuelo() const { return origen; }
+void Vuelo::setOrigenVuelo(const string &origen) { this->origen = origen; }
 
-string Vuelo::getDestinoVuelo() const { return destinoVuelo; }
-void Vuelo::setDestinoVuelo(string &destino) { destinoVuelo = destino; }
+string Vuelo::getDestinoVuelo() const { return destino; }
+void Vuelo::setDestinoVuelo(const string &destino) { this->destino = destino; }
 
 Fecha Vuelo::getFechaSalida() const { return fechaSalida; }
-Fecha Vuelo::setFechaSalida(Fecha salida) { fechaSalida = salida; }
+void Vuelo::setFechaSalida(const Fecha &salida) { fechaSalida = salida; }
 
 Fecha Vuelo::getFechaLlegada() const { return fechaLlegada; }
-Fecha Vuelo::setFechaLlegada(Fecha llegada) { fechaLlegada = llegada; }
+void Vuelo::setFechaLlegada(const Fecha &llegada) { fechaLlegada = llegada; }
 
 void Vuelo::mostrarVuelo() const {
-    cout << "---------------- Datos del vuelo ----------------" << endl;
-    cout << "Número de vuelo: " << numVuelo << endl;
-    cout << "Aerolinea: " << aerolinea << endl;
-    cout << "Origen: " << origenVuelo << endl;
-    cout << "Destino: " << destinoVuelo << endl;
-    cout << "Fecha de salida: "; fechaSalida.mostrarFecha() << endl;
-    cout << "Fecha de llegada: ", fechaLlegada.mostrarFecha() << endl;
+    cout << " Vuelo: " << numVuelo << " - " << aerolinea << " | " << origen << " -> " << destino << " | ";
+    fechaSalida.mostrarFecha();
+    cout << " - ";
+    fechaLlegada.mostrarFecha();
+    cout << endl;
 }
+
+void Vuelo::mostrarAsientos() const {
+    cout << "Asientos disponibles: " << endl;
+    for (int i = 0; i < FILAS ; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            cout << "[" << setw(2) << asientos[i][j] << "]";
+        }
+        cout << endl;
+    }
+}
+
+bool Vuelo::reservarAsiento(string codigo) {
+    for (int i = 0; i < FILAS ; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            if (asientos[i][j] == codigo) {
+                asientos[i][j] = "X";
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+
+
+
+
+
+
 
 
 

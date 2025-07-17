@@ -9,20 +9,21 @@
 
 class Fecha {
 private:
-    int dia;
-    int mes;
-    int anio;
+    int dia, mes, anio;
+
 public:
-    Fecha();
     Fecha(int dia, int mes, int anio);
+
     int getDia() const;
-    int setDia(int dia);
+    void setDia(int d);
+
     int getMes() const;
-    int setMes(int mes);
+    void setMes(int m);
+
     int getAnio() const;
-    int setAnio(int anio);
+    void setAnio(int a);
+
     void mostrarFecha() const;
-    bool esFecha(int dia, int mes, int anio) const;
 };
 
 

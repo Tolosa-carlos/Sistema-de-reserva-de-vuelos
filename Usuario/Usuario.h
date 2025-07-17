@@ -10,23 +10,28 @@ using namespace std;
 
 class Usuario {
 private:
-    int idUsuario;
-    string nombre;
-    string apellido;
-    string mail;
+    int idUsuario, edad;
+    string nombre, apellido, mail;
+
 public:
     Usuario();
-    Usuario(int id, string &nombre,string &apellido, string &mail);
+
+    void ingresarDatos();
 
     int getId() const;
+    void setId(int id);
+
     string getNombre() const;
-    void setNombre(string &nombre);
-    string getApellido();
-    void setApellido(string &apellido);
+    void setNombre(const string &nombre);
+
+    string getApellido() const;
+    void setApellido(const string &apellido);
+
     string getMail() const;
-    void setMail(string &mail);
-    void mostrarDatosUsuario();
-    void consultarReservas() const;
+    void setMail(const string &mail);
+
+    int getEdad() const;
+    void setEdad(int edad);
 
 };
 
