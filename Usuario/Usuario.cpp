@@ -12,33 +12,69 @@ Usuario::Usuario() : edad(0) {}
 
 void Usuario::ingresarDatos() {
     string temporal;
-    int edad, id;
+    int edad;
 
     cout << "Ingrese su DNI:  ";
-    cin >> id;
-    setId(id);
-
-    cout << "Ingrese su nombre:  ";
     cin >> temporal;
-    setNombre(temporal);
+    setId(temporal);
 
-    cout << "Ingrese su apellido:  ";
-    cin >> temporal;
-    setApellido(temporal);
+    while (true) {
+        cout << "Ingrese su nombre:  ";
+        cin >> temporal;
+        if (regex_match(temporal, regex("^[A-Za-z ]+$"))) {
+            setNombre(temporal);
+            break;
+        } else {
+            cout << "Nombre invalido." << endl;
+        }
+    }
 
-    cout << "Ingrese su edad:  ";
-    cin >> edad; setEdad(edad);
+    while (true) {
+        cout << "Ingrese su apellido:  ";
+        cin >> temporal;
+        if (regex_match(temporal, regex("^[A-Za-z ]+$"))) {
+            setApellido(temporal);
+            break;
+        } else {
+            cout << "Apellido invalido." << endl;
+        }
+    }
 
 
-    cout << "Ingrese su correo electronico:  ";
-    cin >> temporal;
-    setMail(temporal);
+    do {
+        cout << "Ingrese su edad: ";
+        cin >> temporal;
+
+        if (regex_match(temporal, regex("^\\d+$"))) {
+            edad = stoi(temporal);
+            if (edad > 0 && edad <= 100) {
+                setEdad(edad);
+                break;
+            } else {
+                cout << "Edad invalida. Debe estar entre 1 y 100." << endl;
+            }
+        } else {
+            cout << "Entrada invalida. Ingrese solo números." << endl;
+        }
+    } while (true);
+
+    do {
+        cout << "Ingrese su correo electronico:  ";
+        cin >> temporal;
+        regex formatoMail("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        if (regex_match(temporal, formatoMail)) {
+            setMail(temporal);
+            break;
+        } else {
+            cout << "Email invalido. Intente denuevo." << endl;
+        }
+    }while (true);
 
     cout << endl;
 }
 
-int Usuario::getId() const { return idUsuario; }
-void Usuario::setId(int id) { idUsuario = id; }
+string Usuario::getId() const { return idUsuario; }
+void Usuario::setId(string id) { idUsuario = id; }
 
 string Usuario::getNombre() const { return nombre; }
 void Usuario::setNombre(const string &nombre) { this->nombre = nombre; }
@@ -47,23 +83,10 @@ string Usuario::getApellido() const { return apellido; }
 void Usuario::setApellido(const string &apellido) { this->apellido = apellido; }
 
 string Usuario::getMail() const { return mail; }
-void Usuario::setMail(const string &mail) {
-    regex formatoMail("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    if (regex_match(mail, formatoMail)) {
-        this->mail = mail;
-    }else {
-        cout << "Email invalido." << endl;
-    }
-}
+void Usuario::setMail(const string &mail) { this->mail = mail; }
 
 int Usuario::getEdad() const { return edad; }
-void Usuario::setEdad(int edad) {
-    if (edad > 0 && edad < 100) {
-        this->edad = edad;
-    } else {
-        cout << "Edad inválida." << endl;
-    };
-}
+void Usuario::setEdad(int edad) { this->edad = edad; }
 
 
 

@@ -32,7 +32,7 @@ int main() {
         cin.ignore();
 
         if (opc < 1 || opc > vuelos.size()) {
-            cout << "Opción invalida.";
+            cout << "Opcion invalida.";
         }
     }while (opc < 1 || opc > vuelos.size());
 

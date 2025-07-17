@@ -10,16 +10,16 @@ using namespace std;
 
 class Usuario {
 private:
-    int idUsuario, edad;
-    string nombre, apellido, mail;
+    int edad;
+    string idUsuario, nombre, apellido, mail;
 
 public:
     Usuario();
 
     void ingresarDatos();
 
-    int getId() const;
-    void setId(int id);
+    string getId() const;
+    void setId(string id);
 
     string getNombre() const;
     void setNombre(const string &nombre);
