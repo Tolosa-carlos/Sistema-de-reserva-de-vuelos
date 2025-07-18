@@ -3,8 +3,13 @@
 //
 
 #include "Usuario.h"
+#include "../Vuelo/Vuelo.h"
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 #include <regex>
+#include <cctype>
 using namespace std;
 
 
@@ -89,8 +94,39 @@ int Usuario::getEdad() const { return edad; }
 void Usuario::setEdad(int edad) { this->edad = edad; }
 
 
+void guardarReservaCSV(const Usuario& usuario, const Vuelo& vuelo, const vector<string>& asientos) {
+    ofstream archivo("reservas.csv", ios::app);
+
+    if (archivo.is_open()) {
+        archivo << usuario.getId() << ", "
+                << usuario.getNombre() << " "
+                << usuario.getApellido() << ", "
+                << usuario.getEdad() << ", "
+                << usuario.getMail() << ", "
+                << vuelo.getNumVuelo() << ", "
+                << vuelo.getAerolinea() << ", "
+                << vuelo.getOrigenVuelo() << ", "
+                << vuelo.getDestinoVuelo() << ", "
+                << vuelo.getFechaSalida().getDia() << " / " << vuelo.getFechaSalida().getMes() << " / " << vuelo.getFechaSalida().getAnio() << ", "
+                << vuelo.getFechaLlegada().getDia() << " / " << vuelo.getFechaLlegada().getMes() << " / " << vuelo.getFechaLlegada().getAnio() << ", ";
 
 
+        for (size_t i = 0; i < asientos.size(); i++) {
+            archivo << asientos[i];
+            if (i < asientos.size() - 1) {
+                archivo << " - ";
+            }
+        }
+
+        archivo << "\n";
+        archivo.close();
+        cout << "Reserva guardada con exito." << endl;
+    }else {
+        cerr << "No se pudo abrir el archivo. \n";
+    }
+
+
+};
 
 
 

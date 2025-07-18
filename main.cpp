@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "Usuario/Usuario.h"
 #include "Vuelo/Vuelo.h"
 #include "Fecha/Fecha.h"
@@ -13,6 +14,8 @@ void mostrarVuelos( const vector<Vuelo> &vuelos) {
     }
 }
 
+void guardarReservaCSV(const Usuario& usuario, const Vuelo& vuelo, const vector<string>& asientos);
+
 int main() {
 
     vector<Vuelo> vuelos = {
@@ -23,7 +26,7 @@ int main() {
 
     Usuario usuario;
     cout << "--------------- Sistema de Gestion de Vuelos ---------------" << endl;
-    //usuario.ingresarDatos();
+    usuario.ingresarDatos();
 
     int opcVuelo;
 
@@ -63,6 +66,8 @@ int main() {
                 }
             }
 
+            guardarReservaCSV(usuario, vueloSeleccionado, asientos);
+
             vueloSeleccionado.mostrarAsientos();
 
             cout << "--------------- Resumen de la reserva ----------------" << endl;
@@ -76,6 +81,9 @@ int main() {
             for (int i = 0; i < cantPasajes; i++) {
                 cout <<"    + " << asientos[i] << endl;;
             }
+
+            cout << "Reserva de vuelo completada con exito." << endl;
+
         }while (opcVuelo < 1 || opcVuelo > vuelos.size());
 
         cout << "Desea realizar otra reserva? (S/N): ";
@@ -83,8 +91,5 @@ int main() {
         opc = toupper(opc);
 
     }while (opc != 'N');
-
-
-    cout << "Reserva de vuelo completada con exito." << endl;
     return 0;
 }
