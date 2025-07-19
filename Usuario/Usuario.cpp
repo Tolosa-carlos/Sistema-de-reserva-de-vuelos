@@ -6,12 +6,10 @@
 #include "../Vuelo/Vuelo.h"
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <vector>
 #include <regex>
-#include <cctype>
+#include <filesystem>
 using namespace std;
-
 
 Usuario::Usuario() : edad(0) {}
 
@@ -95,7 +93,16 @@ void Usuario::setEdad(int edad) { this->edad = edad; }
 
 
 void guardarReservaCSV(const Usuario& usuario, const Vuelo& vuelo, const vector<string>& asientos) {
-    ofstream archivo("reservas.csv", ios::app);
+    string nombreArchivo = "reservas.csv";
+    bool archivoExiste = filesystem::exists(nombreArchivo);
+    ofstream archivo(nombreArchivo, ios::app);
+
+
+    if (!archivoExiste) {
+        archivo << "DNI, Nombre, Apellido, Edad, Email, "
+                << "NroVuelo, Aerolinea, Origen, Destino, "
+                << "FechaSalida, FechaLlegada, Asientos\n";
+    }
 
     if (archivo.is_open()) {
         archivo << usuario.getId() << ", "

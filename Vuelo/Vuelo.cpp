@@ -7,7 +7,6 @@
 #include <iomanip>
 using namespace std;
 
-
 Vuelo::Vuelo(int numVuelo, string aerolinea, string origen, string destino, Fecha salida, Fecha llegada) : numVuelo(numVuelo), aerolinea(aerolinea), origen(origen), destino(destino), fechaSalida(salida), fechaLlegada(llegada){
     char fila = 'A';
     for (int i = 0; i < FILAS ; i++) {
@@ -65,6 +64,32 @@ bool Vuelo::reservarAsiento(string codigo) {
     }
     return false;
 }
+
+void Vuelo::mostrarVuelos (const vector<Vuelo> &vuelos) const{
+    cout << "--------------- Vuelos disponibles ---------------" << endl;
+    for (size_t i = 0; i < vuelos.size(); i++) {
+        cout << i + 1 << ". ";
+        vuelos[i].mostrarVuelo();
+        cout << endl;
+    }
+}
+
+
+void Vuelo::consultarAsientosDisponibles(vector<Vuelo> &vuelos) {
+    int opc;
+    do {
+        mostrarVuelos(vuelos);
+        cout << "Seleccione un vuelo: ";
+        cin >> opc;
+        if (opc >= 1 && opc <= vuelos.size()) {
+            vuelos[opc - 1].mostrarAsientos();
+        }else {
+            cout << "Opcion invalida";
+        }
+    }while (opc < 1 || opc > vuelos.size());
+
+}
+
 
 
 

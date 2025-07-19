@@ -9,4 +9,7 @@ add_executable(Sistema_reserva_de_vuelos main.cpp
         Vuelo/Vuelo.cpp
         Vuelo/Vuelo.h
         Fecha/Fecha.cpp
-        Fecha/Fecha.h)
+        Fecha/Fecha.h
+        GuardarReservasMySQL.cpp
+        Menus/Menus.cpp
+        Menus/Menus.h)

@@ -4,9 +4,11 @@
 
 #ifndef VUELO_H
 #define VUELO_H
-#include <string>
 #define FILAS 5
 #define COLUMNAS 4
+#include <string>
+#include <vector>
+
 #include "../Fecha/Fecha.h"
 using namespace std;
 
@@ -39,7 +41,11 @@ public:
 
     void mostrarVuelo() const;
     void mostrarAsientos() const;
+    void mostrarVuelos (const vector<Vuelo> &vuelos) const;
+
     bool reservarAsiento(string codigo);
+
+    void consultarAsientosDisponibles(vector<Vuelo> &vuelos);
 };
 
 
