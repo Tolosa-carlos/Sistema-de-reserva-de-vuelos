@@ -7,13 +7,6 @@
 #include "Menus/Menus.h"
 using namespace std;
 
-void mostrarVuelos( const vector<Vuelo> &vuelos) {
-    cout << "Lista de vuelos disponibles: " << endl;
-    for (size_t i = 0; i < vuelos.size(); i++) {
-        cout << i + 1 << ". ";
-        vuelos[i].mostrarVuelo();
-    }
-}
 
 void guardarReservaCSV(const Usuario& usuario, const Vuelo& vuelo, const vector<string>& asientos);
 
@@ -66,7 +59,7 @@ int main() {
 
 
 
-    /*
+/*
 
     Usuario usuario;
     cout << "--------------- Sistema de Gestion de Vuelos ---------------" << endl;

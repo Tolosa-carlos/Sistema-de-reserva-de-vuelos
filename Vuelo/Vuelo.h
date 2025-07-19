@@ -41,12 +41,13 @@ public:
 
     void mostrarVuelo() const;
     void mostrarAsientos() const;
-    void mostrarVuelos (const vector<Vuelo> &vuelos) const;
 
     bool reservarAsiento(string codigo);
 
-    void consultarAsientosDisponibles(vector<Vuelo> &vuelos);
 };
+void mostrarVuelos (const vector<Vuelo> &vuelos);
+void consultarAsientosDisponibles(const vector<Vuelo> &vuelos);
+
 
 
 

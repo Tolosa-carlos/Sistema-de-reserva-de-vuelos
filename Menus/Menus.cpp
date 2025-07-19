@@ -11,7 +11,6 @@ using namespace std;
 
 void mostrarMenuUsuario(const vector<Vuelo> &vuelos) {
     Usuario usuario;
-    usuario.ingresarDatos();
 
     int opcUsuario;
     do {
@@ -28,7 +27,7 @@ void mostrarMenuUsuario(const vector<Vuelo> &vuelos) {
                 mostrarVuelos(vuelos);
                 break;
             case 2:
-                //consultarAsientosDisponibles(vuelos);
+                consultarAsientosDisponibles(vuelos);
                 break;
             case 3:
                 break;

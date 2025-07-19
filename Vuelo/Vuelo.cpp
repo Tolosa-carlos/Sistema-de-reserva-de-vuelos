@@ -65,7 +65,7 @@ bool Vuelo::reservarAsiento(string codigo) {
     return false;
 }
 
-void Vuelo::mostrarVuelos (const vector<Vuelo> &vuelos) const{
+void mostrarVuelos (const vector<Vuelo> &vuelos){
     cout << "--------------- Vuelos disponibles ---------------" << endl;
     for (size_t i = 0; i < vuelos.size(); i++) {
         cout << i + 1 << ". ";
@@ -75,7 +75,7 @@ void Vuelo::mostrarVuelos (const vector<Vuelo> &vuelos) const{
 }
 
 
-void Vuelo::consultarAsientosDisponibles(vector<Vuelo> &vuelos) {
+void consultarAsientosDisponibles(const vector<Vuelo> &vuelos) {
     int opc;
     do {
         mostrarVuelos(vuelos);
