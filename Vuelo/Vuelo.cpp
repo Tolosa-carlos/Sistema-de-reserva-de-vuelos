@@ -65,6 +65,68 @@ bool Vuelo::reservarAsiento(string codigo) {
     return false;
 }
 
+void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos) {
+    int opcVuelo, cantPasajes;
+
+    if (usuario.getId().empty()) {
+        cout << "Por favor ingrese sus datos: " << endl;
+        usuario.ingresarDatos();
+    }
+
+    do {
+        cout << "Seleccione un vuelo (1 - " << vuelos.size() << "): ";
+        cin >> opcVuelo;
+        cin.ignore();
+
+        while (opcVuelo < 1 || opcVuelo > vuelos.size()) {
+            cout << "Opcion invalida. Intente nuevamente." << endl;
+            cout << "Seleccione un vuelo (1 - " << vuelos.size() << "): ";
+            cin >> opcVuelo;
+        }
+
+        Vuelo &vueloSeleccionado = vuelos[opcVuelo - 1];
+        cout << "Cuantos pasajes desea reservar? ";
+        cin >> cantPasajes;
+        cin.ignore();
+        cout << endl;
+        vector<string> asientos(cantPasajes);
+
+        for (int i = 0; i < cantPasajes; i++) {
+            vueloSeleccionado.mostrarAsientos();
+            string codigo;
+            cout << "Seleccione el asiento #" << i + 1 << "(Ejemplo: B2): ";
+            cin >> codigo;
+            cout << endl;
+
+            if (!codigo.empty()){ codigo[0] = toupper(codigo[0]); }
+
+            if (vueloSeleccionado.reservarAsiento(codigo)) {
+                cout << "Asiento #" << codigo << " reservado con exito." << endl;
+                asientos[i] = codigo;
+            }else {
+                cout << "Asiento invalido u ocupado. Intente nuevamente: " << endl;
+                i--;
+            }
+        }
+
+        cout << "--------------- Resumen de la reserva ----------------" << endl;
+        cout << " - DNI: " << usuario.getId() << endl;
+        cout << " - Nombre: " << usuario.getNombre()<< endl;
+        cout << " - Apellido: " << usuario.getApellido() << endl;
+        cout << " - Edad: " << usuario. getEdad() << endl;
+        cout << " - Email: " << usuario.getMail() << endl;
+        vueloSeleccionado.mostrarVuelo();
+        cout << " - Asientos reservados: " << endl;
+        for (int i = 0; i < cantPasajes; i++) {
+            cout <<"    + " << asientos[i] << endl;;
+        }
+        cout << "Reserva de vuelo completada con exito." << endl;
+
+    }while (opcVuelo < 1 || opcVuelo > vuelos.size());
+
+}
+
+
 void mostrarVuelos (const vector<Vuelo> &vuelos){
     cout << "--------------- Vuelos disponibles ---------------" << endl;
     for (size_t i = 0; i < vuelos.size(); i++) {
@@ -73,7 +135,6 @@ void mostrarVuelos (const vector<Vuelo> &vuelos){
         cout << endl;
     }
 }
-
 
 void consultarAsientosDisponibles(const vector<Vuelo> &vuelos) {
     int opc;

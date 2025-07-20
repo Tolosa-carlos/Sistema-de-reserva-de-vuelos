@@ -8,7 +8,7 @@
 #define COLUMNAS 4
 #include <string>
 #include <vector>
-
+#include "../Usuario/Usuario.h"
 #include "../Fecha/Fecha.h"
 using namespace std;
 
@@ -44,10 +44,12 @@ public:
 
     bool reservarAsiento(string codigo);
 
+
 };
 
 void mostrarVuelos (const vector<Vuelo> &vuelos);
 void consultarAsientosDisponibles(const vector<Vuelo> &vuelos);
+void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos);
 
 
 
