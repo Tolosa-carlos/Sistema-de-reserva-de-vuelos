@@ -25,6 +25,7 @@ void Usuario::ingresarDatos() {
         cout << "Ingrese su nombre:  ";
         cin >> temporal;
         if (regex_match(temporal, regex("^[A-Za-z ]+$"))) {
+            temporal[0] = toupper(temporal[0]);
             setNombre(temporal);
             break;
         } else {
@@ -36,13 +37,13 @@ void Usuario::ingresarDatos() {
         cout << "Ingrese su apellido:  ";
         cin >> temporal;
         if (regex_match(temporal, regex("^[A-Za-z ]+$"))) {
+            temporal[0] = toupper(temporal[0]);
             setApellido(temporal);
             break;
         } else {
             cout << "Apellido invalido." << endl;
         }
     }
-
 
     do {
         cout << "Ingrese su edad: ";
@@ -57,7 +58,7 @@ void Usuario::ingresarDatos() {
                 cout << "Edad invalida. Debe estar entre 1 y 100." << endl;
             }
         } else {
-            cout << "Entrada invalida. Ingrese solo números." << endl;
+            cout << "Entrada invalida. Ingrese solo numeros." << endl;
         }
     } while (true);
 
@@ -72,8 +73,6 @@ void Usuario::ingresarDatos() {
             cout << "Email invalido. Intente denuevo." << endl;
         }
     }while (true);
-
-    cout << endl;
 }
 
 string Usuario::getId() const { return idUsuario; }

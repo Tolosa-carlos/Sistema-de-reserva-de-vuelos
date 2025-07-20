@@ -8,7 +8,7 @@
 #include "../Vuelo/Vuelo.h"
 using namespace std;
 
-void mostrarMenuUsuario(const vector<Vuelo> &vuelo);
+void mostrarMenuUsuario(vector<Vuelo> &vuelo);
 
 
 

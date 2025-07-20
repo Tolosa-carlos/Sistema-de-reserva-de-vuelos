@@ -78,7 +78,6 @@ void mostrarVuelos (const vector<Vuelo> &vuelos){
 void consultarAsientosDisponibles(const vector<Vuelo> &vuelos) {
     int opc;
     do {
-        mostrarVuelos(vuelos);
         cout << "Seleccione un vuelo: ";
         cin >> opc;
         if (opc >= 1 && opc <= vuelos.size()) {

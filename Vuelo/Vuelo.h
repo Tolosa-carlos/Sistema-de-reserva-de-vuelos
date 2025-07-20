@@ -45,6 +45,7 @@ public:
     bool reservarAsiento(string codigo);
 
 };
+
 void mostrarVuelos (const vector<Vuelo> &vuelos);
 void consultarAsientosDisponibles(const vector<Vuelo> &vuelos);
 
