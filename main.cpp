@@ -29,7 +29,7 @@ int main() {
 
         switch (opcPrincipal) {
             case 1:
-                cout << "Funcionalidad en desarrollo." << endl;
+                mostrarMenuAdmin();
                 break;
             case 2:
                 mostrarMenuUsuario(vuelos);

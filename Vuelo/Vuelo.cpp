@@ -126,7 +126,6 @@ void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos) {
 
 }
 
-
 void mostrarVuelos (const vector<Vuelo> &vuelos){
     cout << "--------------- Vuelos disponibles ---------------" << endl;
     for (size_t i = 0; i < vuelos.size(); i++) {
