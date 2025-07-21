@@ -47,7 +47,7 @@ void mostrarMenuUsuario(vector<Vuelo> &vuelos) {
                 //cancelarReserva();
                 break;
             case 7:
-                //buscarVuelos();
+                buscarVuelos(vuelos);
                 break;
             case 0:
                 cout << "Volviendo al menu principal..." << endl;
@@ -98,6 +98,7 @@ void mostrarMenuAdmin() {
                 modificarVuelo(vuelos);
                 break;
             case 4:
+
                 break;
         }
     }while (opcAdmin != 0);

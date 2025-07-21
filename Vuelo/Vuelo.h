@@ -50,7 +50,10 @@ void mostrarVuelos (const vector<Vuelo> &vuelos);
 void consultarAsientosDisponibles(const vector<Vuelo> &vuelos);
 void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos);
 void agregarVuelo(vector<Vuelo> &vuelos);
+bool buscarVuelo(vector<Vuelo> &vuelo,  int numABuscar);
+void buscarVuelos(vector<Vuelo> &vuelos);
 void modificarVuelo(vector<Vuelo> &vuelos);
+void eliminarVuelo(vector<Vuelo> &vuelos);
 
 
 
