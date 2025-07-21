@@ -13,7 +13,7 @@ private:
 
 public:
     Fecha(int dia, int mes, int anio);
-
+    Fecha();
     int getDia() const;
     void setDia(int d);
 
@@ -22,7 +22,7 @@ public:
 
     int getAnio() const;
     void setAnio(int a);
-
+    void ingresarFecha();
     void mostrarFecha() const;
 };
 

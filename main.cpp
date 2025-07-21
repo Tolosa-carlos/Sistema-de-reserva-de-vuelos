@@ -29,7 +29,11 @@ int main() {
 
         switch (opcPrincipal) {
             case 1:
-                mostrarMenuAdmin();
+                if (loginAdmin()) {
+                    mostrarMenuAdmin();
+                }else {
+                    cout << "Usuario o contraseña incorrecta." << endl;
+                };
                 break;
             case 2:
                 mostrarMenuUsuario(vuelos);

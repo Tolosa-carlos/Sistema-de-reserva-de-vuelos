@@ -10,8 +10,8 @@ using namespace std;
 
 
 void mostrarMenuUsuario(vector<Vuelo> &vuelos) {
-    Usuario usuario;
 
+    Usuario usuario;
     int opcUsuario;
 
     do {
@@ -58,6 +58,18 @@ void mostrarMenuUsuario(vector<Vuelo> &vuelos) {
     }while (opcUsuario != 0);
 }
 
+bool loginAdmin() {
+    string user, password;
+    cout << "--------------- Login Administrador ---------------" << endl;
+    cout << "Usuario: ";
+    cin >> user;
+    cout << "Contraseña: ";
+    cin >> password;
+
+    return (user == "admin" && password == "1234");
+}
+
+
 void mostrarMenuAdmin() {
     vector<Vuelo> vuelos;
     int opcAdmin;
@@ -80,6 +92,12 @@ void mostrarMenuAdmin() {
                 }
                 break;
             case 2:
+                agregarVuelo(vuelos);
+                break;
+            case 3:
+                modificarVuelo(vuelos);
+                break;
+            case 4:
                 break;
         }
     }while (opcAdmin != 0);

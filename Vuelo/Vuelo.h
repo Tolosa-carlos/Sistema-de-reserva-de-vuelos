@@ -44,13 +44,13 @@ public:
 
     bool reservarAsiento(string codigo);
 
-
 };
 
 void mostrarVuelos (const vector<Vuelo> &vuelos);
 void consultarAsientosDisponibles(const vector<Vuelo> &vuelos);
 void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos);
-
+void agregarVuelo(vector<Vuelo> &vuelos);
+void modificarVuelo(vector<Vuelo> &vuelos);
 
 
 

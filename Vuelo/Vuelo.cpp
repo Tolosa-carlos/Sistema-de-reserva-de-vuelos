@@ -3,6 +3,7 @@
 //
 
 #include "Vuelo.h"
+#include "../Usuario/Usuario.h"
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -149,6 +150,126 @@ void consultarAsientosDisponibles(const vector<Vuelo> &vuelos) {
 
 }
 
+void agregarVuelo(vector<Vuelo> &vuelos) {
+    int numVuelo;
+    string aerolinea, origen, destino;
+    Fecha fechaSalida, fechaLlegada;
+
+    cout << "- Numero de vuelo: ";
+    cin >> numVuelo;
+    cin.ignore();
+
+    cout << "- Aerolinea: ";
+    cin >> aerolinea;
+    cin.ignore();
+
+    cout << "- Origen: ";
+    cin >> origen;
+    cin.ignore();
+
+    cout << "- Destino: ";
+    cin >> destino;
+    cin.ignore();
+
+    cout << "- Fecha de salida: ";
+    fechaSalida.ingresarFecha();
+
+    cout << "- Fecha de llegada: ";
+    fechaLlegada.ingresarFecha();
+
+    Vuelo nuevoVuelo(numVuelo, aerolinea, origen, destino, fechaSalida, fechaLlegada);
+    vuelos.push_back(nuevoVuelo);
+
+    cout << "Vuelo agregado con exito" << endl;
+
+}
+
+void modificarVuelo(vector<Vuelo> &vuelos) {
+    int numVueloABuscar, opc;
+    string temporal;
+    Fecha fecha;
+    bool encontrado = false;
+
+    cout << "Ingrese el numero del vuelo a modificar: ";
+    cin >> numVueloABuscar;
+
+    for (Vuelo &vuelo : vuelos) {
+        if (vuelo.getNumVuelo() == numVueloABuscar) {
+            encontrado = true;
+            do {
+                cout << "Seleccione el valor a modificar: ";
+                cout << "1) Numero de vuelo" << endl;
+                cout << "2) Aerolinea" << endl;
+                cout << "3) Origen" << endl;
+                cout << "4) Destino" << endl;
+                cout << "5) Fecha de salida" << endl;
+                cout << "6) Fecha de llegada" << endl;
+                cout << "0) Volver al menu principal" << endl;
+                cin >> opc;
+
+                switch (opc) {
+                    case 1:
+                        int numVuelo;
+                        cout << "Num de vuelo actual: " << numVuelo << endl;
+                        cout << "Ingrese el nuevo numero de vuelo: ";
+                        cin >> numVuelo;
+                        vuelo.setNumVuelo(numVuelo);
+                        cout << "Cambio realizado con exito" << endl;
+                        break;
+                    case 2:
+                        cout << "Aerolinea actual: " << vuelo.getAerolinea() << endl;
+                        cout << "Ingrese la nueva aerolinea: ";
+                        cin >> temporal;
+                        cin.ignore();
+                        vuelo.setAerolinea(temporal);
+                        cout << "Cambio realizado con exito" << endl;
+                        break;
+                    case 3:
+                        cout << "Origen actual del vuelo: " << vuelo.getOrigenVuelo() << endl;
+                        cout << "Ingrese el nuevo lugar de origen: ";
+                        cin >> temporal;
+                        cin.ignore();
+                        vuelo.setOrigenVuelo(temporal);
+                        cout << "Cambio realizado con exito" << endl;
+                        break;
+                    case 4:
+                        cout << "Origen actual del vuelo: " << vuelo.getDestinoVuelo() << endl;
+                        cout << "Ingrese el nuevo lugar de destino: ";
+                        cin >> temporal;
+                        cin.ignore();
+                        vuelo.setDestinoVuelo(temporal);
+                        cout << "Cambio realizado con exito" << endl;
+                        break;
+                    case 5:
+                        cout << "Fecha de salida actual: ";
+                        vuelo.getFechaSalida().mostrarFecha();
+                        cout << "Ingrese la nueva fecha de salida: ";
+                        fecha.ingresarFecha();
+                        vuelo.setFechaSalida(fecha);
+                        cout << "Cambio realizado con exito" << endl;
+                        break;
+                    case 6:
+                        cout << "Fecha de llegada actual: ";
+                        vuelo.getFechaLlegada().mostrarFecha();
+                        cout << "Ingrese la nueva fecha de llegada: ";
+                        fecha.ingresarFecha();
+                        vuelo.setFechaLlegada(fecha);
+                        cout << "Cambio realizado con exito" << endl;
+                        break;
+                    case 0:
+                        cout << "Volviendo al menu principal..." << endl;
+                        break;
+                    default:
+                        cout << "Opcion invalida" << endl;
+                }
+            }while (opc != 0);
+            break;
+        }
+        if (!encontrado) {
+            cout << "No se encontro un vuelo con ese numero." << endl;
+        }
+    }
+}
 
 
 

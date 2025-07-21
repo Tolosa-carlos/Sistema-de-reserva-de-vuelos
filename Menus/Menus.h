@@ -10,6 +10,8 @@ using namespace std;
 
 void mostrarMenuUsuario(vector<Vuelo> &vuelo);
 
+bool loginAdmin();
+
 void mostrarMenuAdmin();
 
 #endif //MENUS_H
