@@ -63,12 +63,11 @@ bool loginAdmin() {
     cout << "--------------- Login Administrador ---------------" << endl;
     cout << "Usuario: ";
     cin >> user;
-    cout << "Contraseña: ";
+    cout << "Contrasenia: ";
     cin >> password;
 
     return (user == "admin" && password == "1234");
 }
-
 
 void mostrarMenuAdmin() {
     vector<Vuelo> vuelos;
@@ -98,8 +97,16 @@ void mostrarMenuAdmin() {
                 modificarVuelo(vuelos);
                 break;
             case 4:
-
+                eliminarVuelo(vuelos);
                 break;
+            case 5:
+                consultarReservasAdmin(vuelos);
+                break;
+            case 0:
+                cout << "Volviendo al menu principal..." << endl;
+                break;
+            default:
+                cout << "Opcion invalida" << endl;
         }
     }while (opcAdmin != 0);
 }

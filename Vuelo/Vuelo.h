@@ -10,6 +10,7 @@
 #include <vector>
 #include "../Usuario/Usuario.h"
 #include "../Fecha/Fecha.h"
+#include "../Reserva/Reserva.h"
 using namespace std;
 
 class Vuelo {
@@ -18,6 +19,8 @@ private:
     int numVuelo;
     string aerolinea, origen, destino;
     Fecha fechaSalida, fechaLlegada;
+    vector<Reserva> reservas;
+
 public:
     Vuelo(int numVuelo, string aerolinea, string origen, string destino, Fecha salida, Fecha llegada);
 
@@ -43,7 +46,8 @@ public:
     void mostrarAsientos() const;
 
     bool reservarAsiento(string codigo);
-
+    void agregarReserva(const Reserva &reserva);
+    vector<Reserva> getReserva() const;
 };
 
 void mostrarVuelos (const vector<Vuelo> &vuelos);
@@ -54,6 +58,7 @@ bool buscarVuelo(vector<Vuelo> &vuelo,  int numABuscar);
 void buscarVuelos(vector<Vuelo> &vuelos);
 void modificarVuelo(vector<Vuelo> &vuelos);
 void eliminarVuelo(vector<Vuelo> &vuelos);
+void consultarReservasAdmin(const vector<Vuelo> &vuelos);
 
 
 

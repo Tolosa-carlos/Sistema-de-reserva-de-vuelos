@@ -4,6 +4,7 @@
 
 #include "Vuelo.h"
 #include "../Usuario/Usuario.h"
+#include "../Reserva/Reserva.h"
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -66,8 +67,13 @@ bool Vuelo::reservarAsiento(string codigo) {
     return false;
 }
 
+void Vuelo::agregarReserva(const Reserva &reserva) { reservas.push_back(reserva); }
+
+vector<Reserva> Vuelo::getReserva() const { return reservas; }
+
 void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos) {
     int opcVuelo, cantPasajes;
+    vector<Reserva> reservas;
 
     if (usuario.getId().empty()) {
         cout << "Por favor ingrese sus datos: " << endl;
@@ -104,6 +110,7 @@ void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos) {
             if (vueloSeleccionado.reservarAsiento(codigo)) {
                 cout << "Asiento #" << codigo << " reservado con exito." << endl;
                 asientos[i] = codigo;
+
             }else {
                 cout << "Asiento invalido u ocupado. Intente nuevamente: " << endl;
                 i--;
@@ -121,6 +128,8 @@ void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos) {
         for (int i = 0; i < cantPasajes; i++) {
             cout <<"    + " << asientos[i] << endl;;
         }
+        Reserva nuevaReserva(usuario, asientos);
+        vueloSeleccionado.agregarReserva(nuevaReserva);
         cout << "Reserva de vuelo completada con exito." << endl;
 
     }while (opcVuelo < 1 || opcVuelo > vuelos.size());
@@ -184,7 +193,6 @@ void agregarVuelo(vector<Vuelo> &vuelos) {
 
 }
 
-
 bool buscarVuelo(vector<Vuelo> &vuelos, int numABuscar) {
 
     for (const Vuelo &vuelo : vuelos) {
@@ -213,7 +221,6 @@ void buscarVuelos(vector<Vuelo> &vuelos) {
         cout << "No se encontraron vuelos con destino a " << destino << endl;
     }
 }
-
 
 void modificarVuelo(vector<Vuelo> &vuelos) {
     int numVueloABuscar, opc;
@@ -309,12 +316,51 @@ void eliminarVuelo(vector<Vuelo> &vuelos) {
 
     cout << "Ingrese el numero del vuelo a eliminar: ";
     cin >> numVueloABuscar;
-
+    bool eliminado = false;
     if (buscarVuelo(vuelos, numVueloABuscar)) {
-        for (Vuelo &vuelo : vuelos) {
-            if (vuelo.getNumVuelo() == numVueloABuscar) {
-
+        for (auto i = vuelos.begin(); i != vuelos.end(); i++) {
+            if (i->getNumVuelo() == numVueloABuscar) {
+                vuelos.erase(i);
+                eliminado = true;
+                cout << "Vuelo eliminado correctamente." << endl;
+                break;
             }
+        }
+    }
+
+    if (!eliminado) {
+        cout << "No se encontro ningun vuelo con el numero ingresado." << endl;
+    }
+}
+
+void consultarReservasAdmin(const vector<Vuelo> &vuelos) {
+    if (vuelos.empty()) {
+        cout << "No hay vuelos cargados." << endl;
+        return;
+    }
+
+    for (const Vuelo &vuelo : vuelos) {
+        cout << "-------------- Reservas del vuelo: " << vuelo.getNumVuelo() << " --------------" << endl;
+
+        vector<Reserva> reservas = vuelo.getReserva();
+        if (reservas.empty()) {
+            cout << "No hay reservas para este vuelo." << endl;
+            continue;
+        }
+
+        int contador = 0;
+        for (const Reserva &reserva : reservas) {
+            Usuario usuario = reserva.getUsuario();
+            cout << contador + 1 << ") " << usuario.getNombre() << " " << usuario.getApellido() << endl;
+            cout << "- DNI: " << usuario.getId() << endl;
+            cout << "- Mail: " << usuario.getMail() << endl;
+
+            vector<string> asientos = reserva.getAsientos();
+            cout << "Asientos: ";
+            for (const string &asiento : asientos) {
+                cout << asiento << " - ";
+            }
+            cout << endl;
         }
     }
 }
