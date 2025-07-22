@@ -20,13 +20,13 @@ int Fecha::getAnio() const { return anio; }
 void Fecha::setAnio(int a) { this->anio = a; }
 
 void Fecha::ingresarFecha() {
-    cout << "Dia: ";
+    cout << "   + Dia: ";
     cin >> dia;
 
-    cout << "Mes: ";
+    cout << "   + Mes: ";
     cin >> mes;
 
-    cout << "Anio: ";
+    cout << "   + Anio: ";
     cin >> anio;
 
 }

@@ -38,7 +38,10 @@ Fecha Vuelo::getFechaLlegada() const { return fechaLlegada; }
 void Vuelo::setFechaLlegada(const Fecha &llegada) { fechaLlegada = llegada; }
 
 void Vuelo::mostrarVuelo() const {
-    cout << " Vuelo: " << numVuelo << " - " << aerolinea << " | " << origen << " -> " << destino << " | ";
+    cout << " Vuelo: " << numVuelo
+        << " - " << aerolinea
+        << " | " << origen
+        << " -> " << destino << " | ";
     fechaSalida.mostrarFecha();
     cout << " - ";
     fechaLlegada.mostrarFecha();
@@ -169,21 +172,18 @@ void agregarVuelo(vector<Vuelo> &vuelos) {
     cin.ignore();
 
     cout << "- Aerolinea: ";
-    cin >> aerolinea;
-    cin.ignore();
+    getline(cin, aerolinea);
 
     cout << "- Origen: ";
-    cin >> origen;
-    cin.ignore();
+    getline(cin, origen);
 
     cout << "- Destino: ";
-    cin >> destino;
-    cin.ignore();
+    getline(cin, destino);
 
-    cout << "- Fecha de salida: ";
+    cout << "- Fecha de salida: " << endl;
     fechaSalida.ingresarFecha();
 
-    cout << "- Fecha de llegada: ";
+    cout << "- Fecha de llegada: " << endl;
     fechaLlegada.ingresarFecha();
 
     Vuelo nuevoVuelo(numVuelo, aerolinea, origen, destino, fechaSalida, fechaLlegada);
