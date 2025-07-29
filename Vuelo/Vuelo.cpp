@@ -74,9 +74,8 @@ void Vuelo::agregarReserva(const Reserva &reserva) { reservas.push_back(reserva)
 
 vector<Reserva> Vuelo::getReserva() const { return reservas; }
 
-void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos) {
+void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos, vector<Reserva> &reservas) {
     int opcVuelo, cantPasajes;
-    vector<Reserva> reservas;
 
     if (usuario.getId().empty()) {
         cout << "Por favor ingrese sus datos: " << endl;
@@ -133,10 +132,10 @@ void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos) {
         }
         Reserva nuevaReserva(usuario, asientos);
         vueloSeleccionado.agregarReserva(nuevaReserva);
+        reservas.push_back(nuevaReserva);
         cout << "Reserva de vuelo completada con exito." << endl;
 
     }while (opcVuelo < 1 || opcVuelo > vuelos.size());
-
 }
 
 void mostrarVuelos (const vector<Vuelo> &vuelos){
@@ -208,6 +207,7 @@ void buscarVuelos(vector<Vuelo> &vuelos) {
     cout << "Ingrese el destino del vuelo a buscar: ";
     cin >> destino;
     cin.ignore();
+    destino[0] = toupper(destino[0]);
     bool encontrado = false;
     for (const Vuelo &vuelo : vuelos) {
         if (vuelo.getDestinoVuelo() == destino) {
@@ -362,6 +362,58 @@ void consultarReservasAdmin(const vector<Vuelo> &vuelos) {
             }
             cout << endl;
         }
+    }
+}
+
+void consultarReservasUser(const vector<Reserva> &reservas, const Usuario &usuario) {
+    cout << "------------ Reservas realizadas ------------" << endl;
+    int cont = 0;
+
+    if (!reservas.empty()) {
+        for (const auto &reserva : reservas) {
+            if (reserva.getUsuario().getId() == usuario.getId()) {
+                cout << cont++ << ") ";
+                reserva.mostrarReserva();
+                cout << endl;
+            }
+        }
+    }else {
+        cout << "No tiene reservas realizadas" << endl;
+    }
+
+}
+
+void cancelarReserva(vector<Reserva> &reservas, const Usuario &usuario) {
+    vector<int> indiceUser;
+    cout << "------------- Cancelar reserva -------------" << endl;
+    int cont = 0;
+
+    for (size_t i = 0; i < reservas.size(); i++) {
+        if (reservas[i].getUsuario().getId() == usuario.getId()) {
+            cout << cont++ << ") ";
+            reservas[i].mostrarReserva();
+            cout << endl;
+            indiceUser.push_back(i);
+        }
+    }
+
+    if (indiceUser.empty()) {
+        cout << "No tiene reservas para cancelar." << endl;
+        return;
+    }
+
+    int opc;
+    cout << "Ingrese el numero de la reserva que desee cancelar (0 para salir): ";
+    cin >> opc;
+
+    if (opc > 0 && opc <= static_cast<int>(indiceUser.size())) {
+        int id = indiceUser[opc-1];
+        reservas.erase(reservas.begin() + id);
+        cout << "Reserva cancelada con exito." << endl;
+    }else if (opc == 0) {
+        cout << "Operacion cancelada." << endl;
+    }else {
+        cout << "Opcion invalida." << endl;
     }
 }
 

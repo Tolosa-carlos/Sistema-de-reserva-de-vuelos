@@ -52,13 +52,15 @@ public:
 
 void mostrarVuelos (const vector<Vuelo> &vuelos);
 void consultarAsientosDisponibles(const vector<Vuelo> &vuelos);
-void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos);
+void reservarVuelo(Usuario &usuario, vector<Vuelo> &vuelos, vector<Reserva> &reservas);
 void agregarVuelo(vector<Vuelo> &vuelos);
 bool buscarVuelo(vector<Vuelo> &vuelo,  int numABuscar);
 void buscarVuelos(vector<Vuelo> &vuelos);
 void modificarVuelo(vector<Vuelo> &vuelos);
 void eliminarVuelo(vector<Vuelo> &vuelos);
 void consultarReservasAdmin(const vector<Vuelo> &vuelos);
+void consultarReservasUser(const vector<Reserva> &reservas, const Usuario &usuario);
+void cancelarReserva(vector<Reserva> &reservas, const Usuario &usuario);
 
 
 

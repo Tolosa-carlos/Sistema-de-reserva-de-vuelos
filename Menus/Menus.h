@@ -8,7 +8,7 @@
 #include "../Vuelo/Vuelo.h"
 using namespace std;
 
-void mostrarMenuUsuario(vector<Vuelo> &vuelo);
+void mostrarMenuUsuario(vector<Vuelo> &vuelo, vector<Reserva> &reservas);
 
 bool loginAdmin();
 

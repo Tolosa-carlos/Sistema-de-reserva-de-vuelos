@@ -12,12 +12,14 @@ void guardarReservaCSV(const Usuario& usuario, const Vuelo& vuelo, const vector<
 
 int main() {
 
+
     vector<Vuelo> vuelos = {
         Vuelo(101, "Aerolineas Argentinas", "Buenos Aires", "Cordoba", Fecha(20, 7, 2025), Fecha(20, 7, 2025)),
         Vuelo(102, "LATAM", "Mendoza", "Salta", Fecha(21, 7, 2025), Fecha(21, 7, 2025)),
         Vuelo(103, "Flybondi", "Rosario", "Iguazu", Fecha(22, 7, 2025), Fecha(22, 7, 2025))
     };
 
+    vector<Reserva> reservas;
     int opcPrincipal;
     do {
         cout << "---------------- Bienvenido al Sistema de Gestion de Vuelos ----------------" << endl;
@@ -36,7 +38,7 @@ int main() {
                 };
                 break;
             case 2:
-                mostrarMenuUsuario(vuelos);
+                mostrarMenuUsuario(vuelos, reservas);
                 break;
             case 0:
                 cout << "Gracias por usar el sistema" << endl;

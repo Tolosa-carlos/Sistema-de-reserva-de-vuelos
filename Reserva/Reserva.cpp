@@ -12,5 +12,14 @@ Usuario Reserva::getUsuario() const { return usuario; }
 
 vector<string> Reserva::getAsientos() const { return asientos; }
 
+void Reserva::mostrarReserva() const {
+    cout << "- Vuelo: " << numVuelo
+        << " | Asientos: ";
+    for (const auto &asiento : asientos) {
+        cout << asiento << " - ";
+    }
+    cout << endl;
+}
+
 
 

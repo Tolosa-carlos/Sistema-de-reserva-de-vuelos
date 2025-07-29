@@ -9,22 +9,22 @@
 using namespace std;
 
 
-void mostrarMenuUsuario(vector<Vuelo> &vuelos) {
+void mostrarMenuUsuario(vector<Vuelo> &vuelos, vector<Reserva> &reservas) {
 
     Usuario usuario;
     int opcUsuario;
-
     do {
-        cout << "1) Consultar vuelos disponibles" << endl;
-        cout << "2) Ver asientos disponibles" << endl;
-        cout << "3) Realizar una reserva" << endl;
-        cout << "4) Cambiar datos de usuario" << endl;
-        cout << "5) Consultar reservas" << endl;
-        cout << "6) Cancelar reserva" << endl;
-        cout << "7) Buscar vuelos" << endl;
+        cout << "1) Consultar vuelos disponibles" << endl;  // Funciona
+        cout << "2) Ver asientos disponibles" << endl; // Funciona
+        cout << "3) Realizar una reserva" << endl; // Funciona
+        cout << "4) Cambiar datos de usuario" << endl; // Funciona
+        cout << "5) Consultar reservas" << endl; // Funciona
+        cout << "6) Cancelar reserva" << endl; // No funciona
+        cout << "7) Buscar vuelos" << endl; // Funciona
         cout << "0) Volver al menu principal" << endl;
         cout << "Seleccione una opcion: ";
         cin >> opcUsuario;
+
 
         switch (opcUsuario) {
             case 1:
@@ -34,17 +34,17 @@ void mostrarMenuUsuario(vector<Vuelo> &vuelos) {
                 consultarAsientosDisponibles(vuelos);
                 break;
             case 3:
-                reservarVuelo(usuario, vuelos);
+                reservarVuelo(usuario, vuelos, reservas);
                 break;
             case 4:
                 usuario.ingresarDatos();
-                reservarVuelo(usuario, vuelos);
+                reservarVuelo(usuario, vuelos, reservas);
                 break;
             case 5:
-                //consultarReservas();
+                consultarReservasUser(reservas,usuario);
                 break;
             case 6:
-                //cancelarReserva();
+                cancelarReserva(reservas,usuario);
                 break;
             case 7:
                 buscarVuelos(vuelos);
